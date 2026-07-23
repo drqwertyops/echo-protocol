@@ -2,19 +2,17 @@
 
 **Conservation of Intent Across Independent Agents**
 
-Copyright © 2026 Your Name
+**Status:**: Draft Specification
+**Version:**: 0.1.0
+**Published:**: 23 July 2026
+**Author**: *Stephen Okotume*
+
+Copyright © 2026 Stephen Okotume
 
 This specification is licensed under the
 Creative Commons Attribution 4.0 International License (CC BY 4.0).
 
 See `SPEC-LICENSE` for details.
-
-**Status:** Draft Specification
-**Version:** 0.1.0
-**Published:** 22 July 2026
-
-**Author**
-*Stephen Okotume*
 
 ---
 
