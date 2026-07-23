@@ -1,0 +1,7 @@
+[project]
+name = "echo-protocol"
+version = "0.1.0"
+description = "Reference Implementation of Echo Protocol v0.1"
+dependencies = ["cryptography>=41.0", "cbor2>=5.5"]
+[project.scripts]
+echo = "echo_protocol.cli:main"
