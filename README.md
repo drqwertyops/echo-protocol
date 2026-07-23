@@ -1,10 +1,12 @@
+# README.md
+
 # Echo Protocol
 
-**Reference implementation of the Echo Protocol Specification v0.1.0**
+**Reference implementation of the Echo Protocol Specification v0.1**
 
-`echo-protocol` is the official Python reference implementation of the Echo Protocol Specification. It provides a deterministic implementation for generating and verifying **Authority Seals** and **Echo Chains**, producing byte-for-byte identical protocol artifacts across compliant implementations.
+`Echo-protocol` is the official Python reference implementation of the Echo Protocol. It generates deterministic **Authority Seals** and **Echo Chains** that can be verified by any compliant implementation, regardless of programming language or runtime.
 
-The project serves as the canonical implementation for developers building compatible libraries, applications, and services.
+The project is designed as the canonical implementation for developers building compatible clients, libraries, or services.
 
 ---
 
@@ -12,34 +14,21 @@ The project serves as the canonical implementation for developers building compa
 
 Echo Protocol is a cryptographic framework for **Attested Conservation of Intent** across independent systems.
 
-It separates authorization, execution, and verification into independent cryptographic roles, allowing any implementation to verify that work was performed according to an authorized rule without relying on trust in the executing system.
+In simple terms, it allows one party to define *what should happen*, another party to prove *what actually happened*, and a third party to verify that the two match.
 
-The protocol defines three core roles:
+The protocol is built around three roles:
 
-* **Authority** — defines a Rule and authorizes it by issuing an Authority Seal.
-* **Executor** — performs the authorized work and records an immutable Echo Chain.
-* **Registry** — independently verifies that execution matches the original authorization.
+* **Authority** — defines the intended rule and signs it.
+* **Executor** — performs the work and records an immutable sequence of attestations.
+* **Registry** — verifies that the recorded execution matches the original rule.
 
-Echo Protocol is designed for AI agents, automation platforms, distributed software systems, and any workflow that requires verifiable preservation of intent.
-
-### Key Properties
+The protocol is:
 
 * Deterministic
-* Deterministic verification
 * Offline-first
 * Tamper-evident
 * Content-agnostic
 * Language independent
-
----
-
-## Why Echo?
-
-As AI systems become more autonomous, work is increasingly delegated across multiple agents, tools, and services. While this makes systems more capable, it also makes it harder to verify that the original intent was preserved throughout execution.
-
-Echo Protocol provides a standardized way to cryptographically prove that delegated work followed an authorized rule. Instead of trusting the execution environment, verification is based entirely on signatures, hashes, and deterministic protocol rules.
-
-The protocol does not attempt to determine whether the work itself is "correct." Its purpose is to prove that the recorded execution faithfully corresponds to an authorized intent.
 
 ---
 
@@ -58,14 +47,12 @@ pip install echo-protocol
 
 ## Command Line Usage
 
-### 1. Generate key pairs
+### 1. Generate keys
 
 ```bash
 echo keygen --out-sk authority.sk --out-pk authority.pk
 echo keygen --out-sk executor.sk --out-pk executor.pk
 ```
-
-Generate separate key pairs for the Authority and the Executor.
 
 ---
 
@@ -79,7 +66,7 @@ echo issue \
   --out task.seal
 ```
 
-This creates a signed Authority Seal containing the authorized Rule and any execution constraints.
+This produces a signed, immutable description of the intended workflow.
 
 ---
 
@@ -94,11 +81,11 @@ echo attest \
   --out work.chain
 ```
 
-Each invocation appends a signed attestation to the Echo Chain, creating an immutable execution history.
+Each attestation extends the Echo Chain with cryptographic proof that a specific step was completed.
 
 ---
 
-### 4. Verify execution
+### 4. Verify the result
 
 ```bash
 echo verify \
@@ -108,7 +95,7 @@ echo verify \
   --exec-pk executor.pk
 ```
 
-Successful verification returns:
+Expected output:
 
 ```text
 VERIFIED
@@ -155,22 +142,22 @@ assert registry_verify(
 
 This implementation targets **Echo Protocol Specification v0.1.0**.
 
-Run the compliance suite:
+Run the compliance suite with:
 
 ```bash
 pip install -e ".[test]"
 pytest
 ```
 
-All frozen test vectors in `tests/test_vectors.py` must pass. These vectors are intended for validating compatible implementations in Rust, Go, JavaScript, and other languages.
+All frozen test vectors in `tests/test_vectors.py` must pass. These vectors are intended for validating compatible implementations written in Rust, Go, JavaScript, or other languages.
 
 ---
 
-## Serialized Sizes
+## Data Sizes
 
-Approximate serialized sizes for protocol artifacts:
+Approximate serialized sizes:
 
-| Artifact       | Size                          |
+| Object         | Size                          |
 | -------------- | ----------------------------- |
 | Authority Seal | 200 bytes + constraints       |
 | Echo Chain     | 34 + (132 × steps) + 32 bytes |
@@ -180,20 +167,6 @@ Approximate serialized sizes for protocol artifacts:
 ## Specification
 
 The complete protocol specification is available in `SPEC.md`.
-
----
-
-## Roadmap
-
-Current development priorities include:
-
-* ✅ Echo Protocol Specification v0.1.0
-* ✅ Python reference implementation
-* ⬜ Rust implementation
-* ⬜ Cross-language compliance test suite
-* ⬜ Echo Protocol v1.0
-
-Contributions, feedback, and independent implementations are welcome.
 
 ---
 

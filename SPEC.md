@@ -38,14 +38,6 @@ This specification is published as an open standard proposal. It is not currentl
 
 ---
 
-# Copyright and License
-
-Copyright © 2026 Your Name.
-
-This specification is released under the MIT License unless otherwise noted.
-
----
-
 # 1. Introduction
 
 Modern software increasingly relies on autonomous systems and AI agents to perform work on behalf of users and organizations. As execution becomes distributed across multiple services and environments, verifying that the original intent has been faithfully preserved becomes increasingly difficult.
@@ -66,12 +58,6 @@ Echo Protocol is designed around the following principles:
 * **Content Agnosticism** — Rules and evidence are treated as opaque data.
 * **Implementation Independence** — Compatible implementations may be written in any programming language or execution environment.
 * **Offline Verification** — Verification requires no network connectivity after protocol artifacts have been obtained.
-
----
-
-## 1.1 Requirements Language
-
-The key words **MUST**, **MUST NOT**, **REQUIRED**, **SHALL**, **SHALL NOT**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**, **MAY**, and **OPTIONAL** are to be interpreted as described in RFC 2119.
 
 ---
 
